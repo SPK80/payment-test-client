@@ -6,42 +6,29 @@ import { CVV } from './components/CVV';
 import { Amount } from './components/Amount';
 import { useState } from 'react';
 import './components/styles.css';
-import axios from 'axios';
+import { postPayment } from './serverApi';
 
 // { "CardNumber": '0000000000000000', ExpDate: '04/2022', Cvv: '123', Amount: 100 }
 // { "RequestId": '61b248040041bc64b411a691', Amount: 100 }
-
-// const paymentData = {
-// 	CardNumber: '',
-// 	ExpDate: '',
-// 	Cvv: '',
-// 	Amount: ''
-// }
-// import config from '../../config.json'
-// const baseUrl = `${config.server.host}/api/records/`;
-
-// export default {
-// 	get: (query = '') => axios.get(baseUrl + query),
-// 	post: (record) => axios.post(baseUrl, record),
-// 	put: (record) => axios.put(baseUrl, record),
-// 	delete: (id = '') => axios.delete(baseUrl + '?id=' + id)
-// };
 
 function App() {
 
 	function sendData(paymentData) {
 		console.log(paymentData);
-		axios.post('http://localhost:8000/api/payments', paymentData)
+		setSending(true);
+		postPayment(paymentData)
 			.then((response => {
 				console.log(response);
 			}))
 			.catch(err => {
 				console.error(err);
 			})
+			.finally(() => setSending(false));
 	}
 
 	const [paymentData, setPaymentData] = useState({});
 	const [payAvail, setPayAvail] = useState(false)
+	const [sending, setSending] = useState(false)
 
 	return (
 		<div className="App">
@@ -98,7 +85,7 @@ function App() {
 				className='Button'
 				disabled={!payAvail}
 				type="primary"
-				// loading={sending}
+				loading={sending}
 				onClick={() => sendData(paymentData)}
 			>
 				оплатить
