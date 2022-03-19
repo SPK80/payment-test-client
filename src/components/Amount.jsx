@@ -1,20 +1,24 @@
+import { InputNumber } from 'antd';
 import React from 'react';
-import { ValidatingInputContainer } from "./ValidatingInput";
 
 export function Amount({ onValid, onInvalid }) {
-
-	function isValid(number) {
-		return String(number).length > 0;
-	}
 
 	return (
 		<div>
 			<span>Amount</span>
-			<ValidatingInputContainer
-				isValidValue={isValid}
-				onValidValue={onValid}
-				onInvalidValue={onInvalid}
-				isValidChar={char => !isNaN(Number(char))}
+			<InputNumber
+				defaultValue={0}
+				min={0}
+				controls={false}
+				onChange={(v) => {
+					if (v > 0) onValid(v)
+					else onInvalid();
+				}}
+				style={{
+					width: 200,
+					marginRight: "1rem",
+					marginLeft: "1rem"
+				}}
 			/>
 		</div>
 	);
