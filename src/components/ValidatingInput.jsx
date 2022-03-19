@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Input } from "antd";
+import './styles.css';
 
 export function ValidatingInputContainer({ onValidValue, onInvalidValue, isValidValue, isValidChar }) {
 	const [value, setValue] = useState('');
@@ -23,13 +24,9 @@ export function ValidatingInputContainer({ onValidValue, onInvalidValue, isValid
 function ValidatingInput({ value, onChange }) {
 	return (
 		<Input
+			className='Field'
 			value={value}
 			onChange={onChange}
-			style={{
-				width: 200,
-				marginRight: "1rem",
-				marginLeft: "1rem"
-			}}
 		/>
 	);
 }

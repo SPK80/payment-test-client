@@ -5,6 +5,7 @@ import { ExpirationDate } from './components/ExpirationDate';
 import { CVV } from './components/CVV';
 import { Amount } from './components/Amount';
 import { useState } from 'react';
+import './components/styles.css';
 
 // { "CardNumber": '0000000000000000', ExpDate: '04/2022', Cvv: '123', Amount: 100 }
 // { "RequestId": '61b248040041bc64b411a691', Amount: 100 }
@@ -73,9 +74,9 @@ function App() {
 			/>
 
 			<Button
+				className='Button'
 				disabled={!payAvail}
 				type="primary"
-				style={{ marginLeft: 8 }}
 			>
 				оплатить
 			</Button>
