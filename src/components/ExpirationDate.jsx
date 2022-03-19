@@ -9,7 +9,7 @@ export function ExpirationDate({ onValid, onInvalid }) {
 			<DatePicker
 				className='Field'
 				onChange={(_, data) => {
-					if (data == '')
+					if (data === '')
 						onInvalid()
 					else
 						onValid(data);
