@@ -135,7 +135,7 @@ export function PaymentForm(params) {
 					disabled={!payAvail}
 					loading={sending}
 				>
-					Отправить
+					Оплатить
 				</Button>
 			</Form.Item>
 		</Form >
