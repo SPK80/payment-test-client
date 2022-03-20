@@ -30,31 +30,29 @@ export function PaymentForm(params) {
 		sendData(values);
 	}
 
+	function checkPayAvail(changedFields, allFields) {
+		if (changedFields[0].errors.length > 0) {
+			setPayAvail(false);
+		}
+		else {
+			const allValid = allFields.reduce((validsAccum, field) =>
+				(validsAccum && (field.touched && field.errors.length === 0))
+				, true);
+			setPayAvail(allValid);
+		}
+	}
+
 	return (
 		<Form
 			name="payment"
 
-			labelCol={{
-				span: 5,
-			}}
+			labelCol={{ span: 5 }}
 
-			wrapperCol={{
-				span: 6,
-			}}
+			wrapperCol={{ span: 6 }}
 
 			onFinish={onFinish}
 			autoComplete="off"
-			onFieldsChange={(changedFields, allFields) => {
-				if (changedFields[0].errors.length > 0) {
-					setPayAvail(false);
-				}
-				else {
-					const valid = allFields.reduce((allValid, field) => {
-						return allValid && (field.touched && field.errors.length === 0)
-					}, true);
-					setPayAvail(valid);
-				}
-			}}
+			onFieldsChange={checkPayAvail}
 		>
 			<Form.Item
 				name="CardNumber"
