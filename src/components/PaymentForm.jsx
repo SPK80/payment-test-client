@@ -47,8 +47,8 @@ export function PaymentForm(params) {
 	return (
 		<Form
 			name="payment"
-			labelCol={{ span: 5 }}
-			wrapperCol={{ span: 6 }}
+			labelCol={{ span: 10 }}
+			wrapperCol={{ span: 15 }}
 			autoComplete="off"
 			onFinish={onFinish}
 			onFieldsChange={checkPayAvail}
