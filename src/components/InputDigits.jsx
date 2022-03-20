@@ -4,7 +4,7 @@ import { Input } from "antd";
 export function InputDigits(params) {
 
 	function isValidNumber(char) {
-		return !isNaN(Number(char))
+		return char >= '0' && char <= '9'
 	}
 
 	return (
