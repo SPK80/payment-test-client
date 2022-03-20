@@ -1,3 +1,4 @@
+import 'antd/dist/antd.css';
 import React, { useState } from 'react';
 import { Form, Button, DatePicker, Input } from 'antd';
 import { postPayment } from '../serverApi';
