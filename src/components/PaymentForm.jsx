@@ -67,7 +67,10 @@ export function PaymentForm(params) {
 					},
 				]}
 			>
-				<InputDigits placeholder="Please input Card Number (16 digits)" />
+				<InputDigits
+					maxLength={16}
+					placeholder="Please input Card Number (16 digits)"
+				/>
 			</Form.Item>
 
 			<Form.Item
@@ -101,7 +104,10 @@ export function PaymentForm(params) {
 					},
 				]}
 			>
-				<InputDigits placeholder="Please input CVV (3 digits)" />
+				<InputDigits
+					maxLength={3}
+					placeholder="Please input CVV (3 digits)"
+				/>
 			</Form.Item>
 
 			<Form.Item
