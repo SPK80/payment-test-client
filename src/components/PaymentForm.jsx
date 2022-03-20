@@ -1,6 +1,6 @@
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { Form, Button, DatePicker, InputNumber } from 'antd';
+import { Form, Button, DatePicker, InputNumber, message } from 'antd';
 import { postPayment } from '../serverApi';
 import { InputDigits } from './InputDigits.jsx';
 
@@ -18,9 +18,11 @@ export function PaymentForm(params) {
 		postPayment(paymentData)
 			.then((response => {
 				console.log(response);
+				message.success('Success', 1);
 			}))
 			.catch(err => {
 				console.error(err);
+				message.error('Something went wrong!', 2);
 			})
 			.finally(() => setSending(false));
 	}
@@ -45,13 +47,10 @@ export function PaymentForm(params) {
 	return (
 		<Form
 			name="payment"
-
 			labelCol={{ span: 5 }}
-
 			wrapperCol={{ span: 6 }}
-
-			onFinish={onFinish}
 			autoComplete="off"
+			onFinish={onFinish}
 			onFieldsChange={checkPayAvail}
 		>
 			<Form.Item
