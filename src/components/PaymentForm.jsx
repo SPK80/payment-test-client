@@ -1,7 +1,8 @@
 import 'antd/dist/antd.css';
 import React, { useState } from 'react';
-import { Form, Button, DatePicker, Input } from 'antd';
+import { Form, Button, DatePicker, InputNumber } from 'antd';
 import { postPayment } from '../serverApi';
+import { InputDigits } from './InputDigits.jsx';
 
 // { "CardNumber": '0000000000000000', ExpDate: '04/2022', Cvv: '123', Amount: 100 }
 // { "RequestId": '61b248040041bc64b411a691', Amount: 100 }
@@ -31,16 +32,16 @@ export function PaymentForm(params) {
 
 	return (
 		<Form
-			name="basic"
+			name="payment"
+
 			labelCol={{
-				span: 8,
+				span: 5,
 			}}
+
 			wrapperCol={{
-				span: 16,
+				span: 6,
 			}}
-			initialValues={{
-				remember: true,
-			}}
+
 			onFinish={onFinish}
 			autoComplete="off"
 			onFieldsChange={(changedFields, allFields) => {
@@ -69,7 +70,7 @@ export function PaymentForm(params) {
 					},
 				]}
 			>
-				<Input placeholder="Please input Card Number (16 digits)" />
+				<InputDigits placeholder="Please input Card Number (16 digits)" />
 			</Form.Item>
 
 			<Form.Item
@@ -85,6 +86,7 @@ export function PaymentForm(params) {
 				<DatePicker
 					picker="month"
 					format="MM/YYYY"
+					placeholder="Please input Expiration Date"
 				/>
 			</Form.Item>
 
@@ -102,7 +104,7 @@ export function PaymentForm(params) {
 					},
 				]}
 			>
-				<Input placeholder="Please input CVV (3 digits)" />
+				<InputDigits placeholder="Please input CVV (3 digits)" />
 			</Form.Item>
 
 			<Form.Item
@@ -113,20 +115,17 @@ export function PaymentForm(params) {
 						required: true,
 					},
 					{
-						type: 'string',
+						type: 'number',
 						min: 1
 					},
 				]}
 			>
-				<Input placeholder="Please input Amount" />
+				<InputNumber
+					min={1}
+					placeholder="Please input Amount" />
 			</Form.Item>
 
-			<Form.Item
-				wrapperCol={{
-					offset: 8,
-					span: 16,
-				}}
-			>
+			<Form.Item>
 				<Button
 					type="primary"
 					htmlType="submit"
